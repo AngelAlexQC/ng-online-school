@@ -2,7 +2,7 @@
   <h3 *ngIf="course.parallel_name" class="m-0 p-0">
     {{ course.parallel_name }}
   </h3>
-  <small>Período: {{ course.period.name }}</small>
+  <small>Período: {{ course.period?.name }}</small>
   <br />
   <small>ID Curso: {{ id }}</small>
   <h6>Docente: {{ course.teacher.name }}</h6>

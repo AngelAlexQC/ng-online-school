@@ -22,7 +22,7 @@
       />
       <div class="block">
         <strong>
-          {{ auth.user.name }}
+          {{ auth.user.first_name + " " + auth.user.last_name }}
         </strong>
         <br />
         <span *ngFor="let role of auth.user.roles"> {{ role.name }} </span>

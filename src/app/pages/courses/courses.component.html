@@ -20,12 +20,16 @@
           </p>
           <h4>Profesor:</h4>
           <p>
-            {{ course.teacher ? course.teacher.name : "No asignado" }}
+            {{ course.teacher.first_name + " " + course.teacher.last_name }}
           </p>
+          <h5>Estudiantes</h5>
           <div class="d-flex" style="min-height: 28px">
             <img
-              *ngFor="let item of course.enrollments"
-              [src]="item.student.profile_photo_url"
+              *ngFor="let item of course.enrollments; let i = index"
+              [src]="
+                item.student.profile_photo_url ||
+                'https://i.pravatar.cc/300?v=' + item.id
+              "
               class="rounded-circle mr-1"
               alt="Avatar"
               width="28"

@@ -8,9 +8,10 @@ import { NavbarComponent } from "./components/layout/navbar/navbar.component";
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { IndexPageComponent } from './pages/index-page/index-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { SidebarComponent } from './components/layout/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomePageComponent, IndexPageComponent, ContactPageComponent],
+  declarations: [AppComponent, NavbarComponent, HomePageComponent, IndexPageComponent, ContactPageComponent, SidebarComponent],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

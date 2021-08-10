@@ -13,6 +13,8 @@
               aria-expanded="true"
               aria-controls="panelsStayOpen-collapseOne"
             >
+              <i class="fa fa-calendar-week" aria-hidden="true"></i>&nbsp;
+              {{ courseClass.date_start | date: "dd-M-Y" }}&nbsp;
               {{ courseClass.name }}
             </button>
           </h2>

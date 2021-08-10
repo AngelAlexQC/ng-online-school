@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/shared/profile/profile.component';
 import { CourseClassComponent } from './components/course-class/course-class.component';
+import { CoursesComponent } from './pages/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CourseClassComponent } from './components/course-class/course-class.com
     SettingsComponent,
     ProfileComponent,
     CourseClassComponent,
+    CoursesComponent,
   ],
   imports: [
     BrowserModule,

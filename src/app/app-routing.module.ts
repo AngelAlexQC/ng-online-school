@@ -9,6 +9,7 @@ import { LoginComponent } from "./pages/shared/login/login.component";
 import { NotFoundComponent } from "./pages/shared/not-found/not-found.component";
 import { UnauthorizedComponent } from "./pages/shared/unauthorized/unauthorized.component";
 import { ProfileComponent } from "./pages/shared/profile/profile.component";
+import { CoursesComponent } from "./pages/courses/courses.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: "course/:id",
     component: CourseComponent,
+  },
+  {
+    path: "courses",
+    component: CoursesComponent,
   },
   {
     path: "401",

@@ -3,6 +3,7 @@ import { User } from "./user";
 export class Course {
   id: number = 1;
   name: string = "";
+  parallel_name: string = "";
   teacher!: User;
   period!: Period;
   course_classes: CourseClass[] = [];
@@ -21,6 +22,9 @@ export class CourseClass {
   id!: number;
   course_id!: number;
   name!: string;
+  date_start: Date = new Date();
+  date_end: Date = new Date();
+  parallel_name!: string;
   content!: string;
   description!: string;
 }

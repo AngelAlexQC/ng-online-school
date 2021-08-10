@@ -70,6 +70,8 @@
         data-bs-toggle="collapse"
         data-bs-target="#course-collapse"
         aria-expanded="true"
+        [routerLink]="['/courses']"
+        routerLinkActive="active"
       >
         <i class="fa fa-chalkboard"></i>&nbsp;Mis Cursos
       </button>
@@ -84,7 +86,7 @@
               routerLinkActive="active"
               class="link-dark rounded"
             >
-              {{ course.name }}
+              {{ course.parallel_name }}
             </a>
           </li>
         </ul>

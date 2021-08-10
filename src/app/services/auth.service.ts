@@ -60,4 +60,18 @@ export class AuthService {
     this.token = token;
     localStorage.setItem("token", token);
   }
+  canCreateCourses() {
+    let canCreateCourse = false;
+    if (this.user) {
+      this.user.roles.map((role) => {
+        if (role.name === "super-admin") {
+          canCreateCourse = true;
+        }
+        if (role.name === "admin") {
+          canCreateCourse = true;
+        }
+      });
+    }
+    return canCreateCourse;
+  }
 }

@@ -1,0 +1,132 @@
+<div class="flex-shrink-0 p-3 bg-white" style="width: 280px">
+  <div class="dropdown">
+    <a
+      href="#"
+      class="
+        d-flex
+        align-items-center
+        link-dark
+        text-decoration-none
+        dropdown-toggle
+      "
+      id="dropdownUser2"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        src="https://github.com/mdo.png"
+        alt=""
+        width="32"
+        height="32"
+        class="rounded-circle me-2"
+      />
+      <strong>
+        {{ auth.user.name }}
+      </strong>
+    </a>
+    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+      <li>
+        <a class="dropdown-item" href="#">
+          <i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp;Nuevo
+          Estudiante
+        </a>
+      </li>
+      <!-- <li><a class="dropdown-item" href="#">Configuraciones</a></li> -->
+      <li>
+        <a class="dropdown-item" href="#">
+          <i class="fa fa-user-edit" aria-hidden="true"></i>&nbsp;Perfil</a
+        >
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <a class="dropdown-item" href="#" (click)="auth.logout()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Salir
+        </a>
+      </li>
+    </ul>
+  </div>
+  <hr />
+  <ul class="list-unstyled ps-0">
+    <li class="mb-1">
+      <button
+        class="btn btn-toggle align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#home-collapse"
+        aria-expanded="true"
+      >
+        <i class="fa fa-users-class"></i>&nbsp;Mis Cursos
+      </button>
+      <div class="collapse show" id="home-collapse">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li
+            *ngFor="let course of courses; let i = index"
+            (click)="setCourse(courses[i])"
+          >
+            <a
+              [routerLink]="['/course', course.id]"
+              routerLinkActive="active"
+              class="link-dark rounded"
+            >
+              {{ course.name }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <!-- <li class="mb-1">
+      <button
+        class="btn btn-toggle align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#dashboard-collapse"
+        aria-expanded="false"
+      >
+        Dashboard
+      </button>
+      <div class="collapse" id="dashboard-collapse" style="">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">Overview</a></li>
+          <li><a href="#" class="link-dark rounded">Weekly</a></li>
+          <li><a href="#" class="link-dark rounded">Monthly</a></li>
+          <li><a href="#" class="link-dark rounded">Annually</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="mb-1">
+      <button
+        class="btn btn-toggle align-items-center rounded collapsed"
+        data-bs-toggle="collapse"
+        data-bs-target="#orders-collapse"
+        aria-expanded="false"
+      >
+        Orders
+      </button>
+      <div class="collapse" id="orders-collapse" style="">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">New</a></li>
+          <li><a href="#" class="link-dark rounded">Processed</a></li>
+          <li><a href="#" class="link-dark rounded">Shipped</a></li>
+          <li><a href="#" class="link-dark rounded">Returned</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="border-top my-3"></li>
+    <li class="mb-1">
+      <button
+        class="btn btn-toggle align-items-center rounded"
+        data-bs-toggle="collapse"
+        data-bs-target="#account-collapse"
+        aria-expanded="true"
+      >
+        Account
+      </button>
+      <div class="collapse show" id="account-collapse" style="">
+        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+          <li><a href="#" class="link-dark rounded">New...</a></li>
+          <li><a href="#" class="link-dark rounded">Profile</a></li>
+          <li><a href="#" class="link-dark rounded">Settings</a></li>
+          <li><a href="#" class="link-dark rounded">Sign out</a></li>
+        </ul>
+      </div>
+    </li> -->
+  </ul>
+</div>

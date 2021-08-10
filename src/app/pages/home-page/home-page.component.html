@@ -1,1 +1,5 @@
-<p>home-page works!</p>
+<ng-container
+  *ngIf="auth.user; then authenticated; else unAuthenticated"
+></ng-container>
+<ng-template #authenticated> </ng-template>
+<ng-template #unAuthenticated> <app-login></app-login> </ng-template>

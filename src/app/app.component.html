@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <main class="d-flex">
-  <app-sidebar></app-sidebar>
+  <app-sidebar *ngIf="auth.user"></app-sidebar>
   <div class="container p-3">
     <router-outlet></router-outlet>
   </div>

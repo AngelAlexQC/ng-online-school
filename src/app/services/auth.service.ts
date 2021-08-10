@@ -23,7 +23,7 @@ export class AuthService {
       })
       .subscribe(
         (data: any) => {
-          this.user = data;
+          this.user = data;          
         },
         (error) => {
           switch (error.status) {

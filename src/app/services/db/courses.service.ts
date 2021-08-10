@@ -24,7 +24,12 @@ export class CoursesService {
     return this.courses;
   }
   getCourse(id: number) {
-    return this.http.get<any>(this.apiUrl + "/" + id);
+    return this.http.get<any>(this.apiUrl + "/" + id, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
   }
   getCurrentCourse() {
     return this.course;

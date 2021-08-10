@@ -1,1 +1,79 @@
-<h3>Curso {{ id }}</h3>
+<div class="container-fluid" *ngIf="course">
+  <h3 *ngIf="course.name" class="m-0 p-0">
+    {{ course.name }}
+  </h3>
+  <small>Período: {{ course.period.name }}</small>
+  <br />
+  <small>ID Curso: {{ id }}</small>
+  <h6>Profesor: {{ course.teacher.name }}</h6>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="course-classes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#course-classes"
+        type="button"
+        role="tab"
+        aria-controls="course-classes"
+        aria-selected="true"
+      >
+        <i class="fa fa-clock"></i>&nbsp;Clases
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="tasks-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#tasks"
+        type="button"
+        role="tab"
+        aria-controls="tasks"
+        aria-selected="true"
+      >
+        <i class="fa fa-calendar-check" aria-hidden="true"></i>&nbsp;Tareas
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="enrollments-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#enrollments"
+        type="button"
+        role="tab"
+        aria-controls="enrollments"
+        aria-selected="false"
+      >
+        <i class="fa fa-users-class"></i>&nbsp;Estudiantes
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      class="tab-pane fade show active"
+      id="course-classes"
+      role="tabpanel"
+      aria-labelledby="course-classes-tab"
+    >
+      ...
+    </div>
+    <div
+      class="tab-pane fade show"
+      id="tasks"
+      role="tabpanel"
+      aria-labelledby="tasks-tab"
+    >
+      ...
+    </div>
+    <div
+      class="tab-pane fade"
+      id="enrollments"
+      role="tabpanel"
+      aria-labelledby="enrollments-tab"
+    >
+      ...
+    </div>
+  </div>
+</div>

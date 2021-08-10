@@ -23,12 +23,13 @@ export class AuthService {
       })
       .subscribe(
         (data: any) => {
-          this.user = data;          
+          this.user = data;
         },
         (error) => {
           switch (error.status) {
             case 401:
               this.router.navigate(["/home"]);
+              this.logout();
               console.log("Unauthorized, Login to Access");
               break;
             default:

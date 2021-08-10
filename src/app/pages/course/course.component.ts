@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Course } from "src/app/models/course";
+import { AuthService } from "src/app/services/auth.service";
 import { CoursesService } from "src/app/services/db/courses.service";
 
 @Component({
@@ -14,7 +15,8 @@ export class CourseComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private courses: CoursesService
+    private courses: CoursesService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class CourseComponent implements OnInit {
       this.course = this.courses.course;
       this.courses.getCourse(this.id).subscribe(
         (course: any) => {
-          this.course = course;
+          this.course = course.data;
           console.log(course);
         },
         (error) => {
@@ -34,6 +36,7 @@ export class CourseComponent implements OnInit {
               break;
             case 401:
               this.router.navigate(["/401"]);
+              this.auth.logout();
               console.log("Unauthorized");
               break;
 

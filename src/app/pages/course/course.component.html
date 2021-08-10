@@ -5,7 +5,7 @@
   <small>Período: {{ course.period.name }}</small>
   <br />
   <small>ID Curso: {{ id }}</small>
-  <h6>Profesor: {{ course.teacher.name }}</h6>
+  <h6>Docente: {{ course.teacher.name }}</h6>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button
@@ -57,7 +57,10 @@
       role="tabpanel"
       aria-labelledby="course-classes-tab"
     >
-      ...
+      <app-course-class
+        *ngFor="let courseClass of course.course_classes"
+        [courseClass]="courseClass"
+      ></app-course-class>
     </div>
     <div
       class="tab-pane fade show"

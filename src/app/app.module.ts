@@ -16,6 +16,7 @@ import { LoginComponent } from "./pages/shared/login/login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/shared/profile/profile.component';
+import { CourseClassComponent } from './components/course-class/course-class.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProfileComponent } from './pages/shared/profile/profile.component';
     LoginComponent,
     SettingsComponent,
     ProfileComponent,
+    CourseClassComponent,
   ],
   imports: [
     BrowserModule,

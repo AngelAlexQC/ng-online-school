@@ -26,7 +26,7 @@ export class CourseComponent implements OnInit {
       this.courses.getCourse(this.id).subscribe(
         (course: any) => {
           this.course = course.data;
-          console.log(course);
+          console.log(course.data);
         },
         (error) => {
           switch (error.status) {

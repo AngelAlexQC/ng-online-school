@@ -5,6 +5,7 @@ export class Course {
   name: string = "";
   teacher!: User;
   period!: Period;
+  course_classes: CourseClass[] = [];
 }
 
 export class Period {
@@ -14,4 +15,12 @@ export class Period {
   school_id!: number;
   start_date!: Date;
   status!: true;
+}
+
+export class CourseClass {
+  id!: number;
+  course_id!: number;
+  name!: string;
+  content!: string;
+  description!: string;
 }

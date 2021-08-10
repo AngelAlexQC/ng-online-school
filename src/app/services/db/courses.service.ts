@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Course } from "src/app/models/course";
 import { Paginated } from "src/app/models/paginated";
 import { environment } from "src/environments/environment";
@@ -12,7 +13,7 @@ export class CoursesService {
   courses!: Paginated;
   course!: Course;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   getAllCourses() {
     return this.http.get<any>(this.apiUrl);
@@ -37,5 +38,6 @@ export class CoursesService {
   setCurrentCourse(course: Course) {
     this.course = course;
     localStorage.setItem("course", JSON.stringify(course));
+    this.router.navigate(["/course", course.id]);
   }
 }

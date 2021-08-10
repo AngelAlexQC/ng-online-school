@@ -17,4 +17,7 @@ export class User {
     this.last_name = last_name;
     this.roles = roles;
   }
+  get name(): string {
+    return this.first_name + " " + this.last_name;
+  }
 }

@@ -27,4 +27,7 @@ export class CoursesComponent implements OnInit {
   canCreateCourses() {
     return this.auth.canCreateCourses();
   }
+  setCourse(course: Course) {
+    this.coursesService.setCurrentCourse(course);
+  }
 }

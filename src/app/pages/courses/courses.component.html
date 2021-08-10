@@ -9,9 +9,9 @@
       class="col-12 col-md-6 col-lg-4 mb-3"
       *ngFor="let course of courses; let i = index"
     >
-      <div class="card">
+      <div class="card" (click)="setCourse(courses[i])">
         <div class="card-header px-4 pt-4">
-          <h5 class="card-title mb-0">{{ course.name }}</h5>
+          <h5 class="card-title mb-0">{{ course.parallel_name }}</h5>
           <!-- <div class="badge bg-success my-2">Finished</div> -->
         </div>
         <div class="card-body px-4 pt-2">
@@ -19,9 +19,19 @@
             {{ course.description }}
           </p>
           <h4>Profesor:</h4>
-          <p>
-            {{ course.teacher.first_name + " " + course.teacher.last_name }}
-          </p>
+
+          <h5>
+            <img
+              [src]="
+                course.teacher.profile_photo_url ||
+                'https://i.pravatar.cc/300?v=' + (course.teacher.id + 1)
+              "
+              class="rounded-circle mr-1"
+              alt="Avatar"
+              width="25"
+              height="25"
+            />&nbsp;{{ course.teacher.name }}
+          </h5>
           <h5>Estudiantes</h5>
           <div class="d-flex" style="min-height: 28px">
             <img

@@ -49,6 +49,20 @@
         <i class="fa fa-users-class"></i>&nbsp;Estudiantes
       </button>
     </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="scores-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#scores"
+        type="button"
+        role="tab"
+        aria-controls="scores"
+        aria-selected="false"
+      >
+        <i class="fa fa-star" aria-hidden="true"></i>&nbsp;Calificaciones
+      </button>
+    </li>
   </ul>
   <div class="tab-content" id="myTabContent">
     <div
@@ -90,6 +104,18 @@
     >
       <h2 class="mt-3">Estudiantes del Curso</h2>
       <app-student-list [enrollments]="course.enrollments"></app-student-list>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="scores"
+      role="tabpanel"
+      aria-labelledby="scores-tab"
+    >
+      <h2 class="mt-3">Calificaciones del Curso</h2>
+      <app-score-list
+        [enrollments]="course.enrollments"
+        [tasks]="course.tasks"
+      ></app-score-list>
     </div>
   </div>
 </div>

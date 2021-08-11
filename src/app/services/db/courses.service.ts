@@ -6,6 +6,7 @@ import { Course } from "src/app/models/course";
 import { CourseClassTask } from "src/app/models/course-class-task";
 import { Paginated } from "src/app/models/paginated";
 import { environment } from "src/environments/environment";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -45,6 +46,7 @@ export class CoursesService {
     this.router.navigate(["/course", course.id]);
   }
   saveStudentTask(task: CourseClassTask) {
+    Swal.showLoading();
     return this.http.put(
       environment.apiURL +
         "users/" +

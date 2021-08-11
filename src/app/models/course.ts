@@ -1,3 +1,4 @@
+import { CourseClassTask } from "./course-class-task";
 import { User } from "./user";
 
 export class Course {
@@ -27,4 +28,5 @@ export class CourseClass {
   parallel_name!: string;
   content!: string;
   description!: string;
+  course_class_tasks: CourseClassTask[] = [];
 }

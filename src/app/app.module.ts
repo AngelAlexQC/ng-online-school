@@ -14,10 +14,11 @@ import { NotFoundComponent } from "./pages/shared/not-found/not-found.component"
 import { UnauthorizedComponent } from "./pages/shared/unauthorized/unauthorized.component";
 import { LoginComponent } from "./pages/shared/login/login.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SettingsComponent } from './pages/settings/settings.component';
-import { ProfileComponent } from './pages/shared/profile/profile.component';
-import { CourseClassComponent } from './components/course-class/course-class.component';
-import { CoursesComponent } from './pages/courses/courses.component';
+import { SettingsComponent } from "./pages/settings/settings.component";
+import { ProfileComponent } from "./pages/shared/profile/profile.component";
+import { CourseClassComponent } from "./components/course-class/course-class.component";
+import { CoursesComponent } from "./pages/courses/courses.component";
+import { CourseClassTaskComponent } from "./components/course-class-task/course-class-task.component";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
     ProfileComponent,
     CourseClassComponent,
     CoursesComponent,
+    CourseClassTaskComponent,
   ],
   imports: [
     BrowserModule,

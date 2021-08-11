@@ -5,34 +5,32 @@
         <div class="accordion-item">
           <h2
             class="accordion-header"
-            [id]="'panelsStayOpen-heading' + courseClass.id"
+            [id]="'panelsStayOpen-heading' + task.id"
           >
             <button
               class="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
-              [attr.data-bs-target]="
-                '#panelsStayOpen-collapse' + courseClass.id
-              "
+              [attr.data-bs-target]="'#panelsStayOpen-collapse' + task.id"
               [attr.aria-expanded]="'true'"
-              [attr.aria-controls]="'panelsStayOpen-collapse' + courseClass.id"
+              [attr.aria-controls]="'panelsStayOpen-collapse' + task.id"
             >
-              <i class="fa fa-calendar-week" aria-hidden="true"></i>&nbsp;
-              {{ courseClass.date_start | date: "dd-MM-Y hh:mm" }}&nbsp;
-              {{ courseClass.name }}
+              <i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;
+              {{ task.date_start | date: "dd-MM-Y hh:mm" }}&nbsp;
+              {{ task.name }}
             </button>
           </h2>
           <div
-            [id]="'panelsStayOpen-collapse' + courseClass.id"
+            [id]="'panelsStayOpen-collapse' + task.id"
             class="accordion-collapse collapse"
-            [attr.aria-labelledby]="'panelsStayOpen-heading' + courseClass.id"
+            [attr.aria-labelledby]="'panelsStayOpen-heading' + task.id"
           >
             <div class="accordion-body">
               <p>
-                {{ courseClass.description }}
+                {{ task.description }}
               </p>
               <p>
-                {{ courseClass.content }}
+                {{ task.content }}
               </p>
             </div>
           </div>

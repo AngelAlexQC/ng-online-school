@@ -32,7 +32,7 @@
         aria-controls="tasks"
         aria-selected="true"
       >
-        <i class="fa fa-calendar-check" aria-hidden="true"></i>&nbsp;Tareas
+        <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Tareas
       </button>
     </li>
     <li class="nav-item" role="presentation">
@@ -58,10 +58,13 @@
       aria-labelledby="course-classes-tab"
     >
       <h2 class="mt-3">Clases del Curso</h2>
-      <app-course-class
-        *ngFor="let courseClass of course.course_classes"
-        [courseClass]="courseClass"
-      ></app-course-class>
+      <div class="py-3">
+        <app-course-class
+          *ngFor="let courseClass of course.course_classes"
+          [courseClass]="courseClass"
+        ></app-course-class>
+        <small> Las clases están ordenadas por número. </small>
+      </div>
     </div>
     <div
       class="tab-pane fade show"
@@ -69,7 +72,15 @@
       role="tabpanel"
       aria-labelledby="tasks-tab"
     >
-      ...
+      <h2 class="mt-3">Tareas de Clase</h2>
+      <div class="py-3">
+        <ng-container *ngFor="let courseClass of course.course_classes">
+          <ng-container *ngFor="let task of courseClass.course_class_tasks">
+            <app-course-class-task [task]="task"> </app-course-class-task>
+          </ng-container>
+        </ng-container>
+        <small> Las tares están ordenadas por número. </small>
+      </div>
     </div>
     <div
       class="tab-pane fade"

@@ -16,4 +16,8 @@ export class ScoreListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  changeStatus(task: CourseClassTask): void {
+    task.status = !task.status;
+    console.log(status);
+  }
 }

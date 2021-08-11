@@ -4,6 +4,7 @@ export class CourseClassTask {
   content!: string;
   description!: string;
   file!: string;
+  status!: boolean;
   score!: number;
   date_start!: string;
 }

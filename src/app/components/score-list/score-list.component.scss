@@ -1,0 +1,9 @@
+span.badge.badge-warning.bg-warning.btn.btn-sm {
+  &:hover {
+    background-color: green !important;
+    color: white;
+    &:before {
+      content: "Guardar";
+    }
+  }
+}

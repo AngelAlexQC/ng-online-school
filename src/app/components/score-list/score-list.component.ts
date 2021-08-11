@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { CourseClassTask } from "src/app/models/course-class-task";
 import { User } from "src/app/models/user";
 import { CoursesService } from "src/app/services/db/courses.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-score-list",
@@ -14,19 +16,31 @@ export class ScoreListComponent implements OnInit {
 
   @Input()
   tasks: CourseClassTask[] = [];
-  constructor(private courses: CoursesService) {}
+  constructor(private courses: CoursesService, private router: Router) {}
 
   ngOnInit(): void {}
   changeStatus(task: CourseClassTask): void {
     task.status = !task.status;
-    console.log(status);
+   
   }
   saveStore(task: CourseClassTask): void {
     task.status = true;
-    this.courses
-      .saveStudentTask(task)
-      .subscribe((data: any) => {
-        console.log(data.data);
+    this.courses.saveStudentTask(task).subscribe((data: any) => {
+      // Show success message and reload page
+      Swal.fire({
+        title: "Success!",
+        text: "Task has been saved.",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: false,
+      }).then(() => {
+        task = data.data;
+        this.reload("course/" + task.task.course_class.course.id);
       });
+    });
+  }
+  async reload(url: string): Promise<boolean> {
+    await this.router.navigateByUrl(".", { skipLocationChange: true });
+    return this.router.navigateByUrl(url);
   }
 }

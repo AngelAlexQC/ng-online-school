@@ -1,3 +1,5 @@
+import { Course, CourseClass } from "./course";
+
 export class CourseClassTask {
   id!: number;
   name!: string;
@@ -9,4 +11,6 @@ export class CourseClassTask {
   date_start!: string;
   student_id!: number;
   task_id!: number;
+  course_class: CourseClass = new CourseClass();
+  task: any;
 }

@@ -26,17 +26,14 @@ export class CourseComponent implements OnInit {
       this.courses.getCourse(this.id).subscribe(
         (course: any) => {
           this.course = course.data;
-          console.log(course.data);
         },
         (error) => {
           switch (error.status) {
             case 404:
               this.router.navigate(["/404"]);
-              console.log("Not found");
               break;
             case 401:
               this.router.navigate(["/login"]);
-              console.log("Unauthorized");
               break;
 
             default:

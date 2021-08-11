@@ -31,4 +31,5 @@ export class CourseClass {
   content!: string;
   description!: string;
   course_class_tasks: CourseClassTask[] = [];
+  course: Course = new Course();
 }

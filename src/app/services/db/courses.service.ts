@@ -35,7 +35,9 @@ export class CoursesService {
     });
   }
   getCurrentCourse() {
-    return this.course;
+    return localStorage.getItem("course")
+      ? JSON.parse(localStorage.getItem("course") || "null")
+      : null;
   }
   setCurrentCourse(course: Course) {
     this.course = course;
@@ -43,13 +45,12 @@ export class CoursesService {
     this.router.navigate(["/course", course.id]);
   }
   saveStudentTask(task: CourseClassTask) {
-    task.task_id = task.id;
     return this.http.put(
       environment.apiURL +
         "users/" +
         task.student_id +
         "/student-tasks/" +
-        task.task_id,
+        task.id,
       task,
       {
         headers: {

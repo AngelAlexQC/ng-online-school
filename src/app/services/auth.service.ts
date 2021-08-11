@@ -29,7 +29,6 @@ export class AuthService {
           switch (error.status) {
             case 401:
               this.router.navigate(["/login"]);
-              console.log("Unauthorized, Login to Access");
               break;
             default:
               break;

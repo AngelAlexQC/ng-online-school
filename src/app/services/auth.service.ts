@@ -28,8 +28,7 @@ export class AuthService {
         (error) => {
           switch (error.status) {
             case 401:
-              this.router.navigate(["/home"]);
-              this.logout();
+              this.router.navigate(["/login"]);
               console.log("Unauthorized, Login to Access");
               break;
             default:
@@ -55,6 +54,7 @@ export class AuthService {
   logout() {
     this.token = "null";
     localStorage.setItem("token", this.token);
+    this.router.navigate(["/login"]);
   }
   setToken(token: string) {
     this.token = token;

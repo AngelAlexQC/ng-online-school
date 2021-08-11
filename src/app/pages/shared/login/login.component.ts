@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
     this.form = this.fb.group({
       email: ["", Validators.required],
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
             })
             .subscribe((data: any) => {
               this.authService.user = data;
+              this.router.navigate(["/"]);
               Swal.fire({
                 position: "center",
                 icon: "success",

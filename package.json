@@ -5,7 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development"
+    "watch": "ng build --watch --configuration development",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cy:run": "cypress run",
+    "ci:cy-run": "start-server-and-test ci:start-server http://localhost:4200 cy:run",
+    "ci:start-server": "angular-http-server --path ./dist/online-school -p 4200",
+    "test": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -17,6 +24,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "cypress": "^8.2.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.2",
     "tslib": "^2.3.0",
@@ -26,7 +34,11 @@
     "@angular-devkit/build-angular": "~12.2.0",
     "@angular/cli": "~12.2.0",
     "@angular/compiler-cli": "~12.2.0",
+    "@cypress/schematic": "^1.5.0",
     "@types/node": "^12.11.1",
+    "angular-http-server": "^1.10.0",
+    "cypress": "8.2.0",
+    "start-server-and-test": "^1.13.1",
     "typescript": "~4.3.5"
   }
 }

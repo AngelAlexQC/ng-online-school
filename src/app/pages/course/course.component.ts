@@ -35,8 +35,7 @@ export class CourseComponent implements OnInit {
               console.log("Not found");
               break;
             case 401:
-              this.router.navigate(["/401"]);
-              this.auth.logout();
+              this.router.navigate(["/login"]);
               console.log("Unauthorized");
               break;
 

@@ -1,9 +1,54 @@
-<ng-container *ngFor="let enrollment of enrollments">
-  <ng-container *ngFor="let task of enrollment.student_tasks">
-    <pre>
-        {{ task | json }}
-    </pre>
-  </ng-container>
-
-  
-</ng-container>
+<table class="table table-striped table-inverse table-responsive">
+  <thead class="thead-inverse">
+    <tr>
+      <th
+        rowspan="2"
+        class="text-center"
+        style="vertical-align: middle; text-align: center; font-size: 1.5rem"
+      >
+        Estudiante
+      </th>
+      <th colspan="5" class="text-center">Notas</th>
+    </tr>
+    <tr class="text-center">
+      <th *ngFor="let task of tasks">
+        {{ task.name }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let enrollment of enrollments; let i = index">
+      <tr>
+        <td scope="row">
+          <img
+            [src]="
+              (enrollment.student
+                ? enrollment.student.profile_photo_path
+                : 'https://i.pravatar.cc/300') +
+              '?v=' +
+              (enrollment.student ? enrollment.student.id : i + 1)
+            "
+            style="width: 30px"
+            alt="User"
+            class="img-fluid rounded-circle border border-white"
+          />
+          {{ enrollment.student.name }}
+        </td>
+        <ng-container *ngFor="let student_task of enrollment.student_tasks">
+          <ng-container *ngFor="let task of tasks">
+            <ng-container
+              *ngIf="
+                task.id == student_task.task_id &&
+                student_task.student_id == enrollment.student.id
+              "
+            >
+              <td class="text-end">{{ student_task.score.toFixed(2) }}</td>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tr>
+      <!-- <ng-container *ngFor="let task of enrollment.student_tasks">
+      </ng-container> -->
+    </ng-container>
+  </tbody>
+</table>

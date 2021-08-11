@@ -107,6 +107,37 @@
           "options": {
             "browserTarget": "online-school:build"
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "online-school:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "online-school:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "online-school:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "online-school:serve:production"
+            }
+          }
         }
       }
     }

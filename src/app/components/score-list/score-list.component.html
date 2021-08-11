@@ -1,0 +1,9 @@
+<ng-container *ngFor="let enrollment of enrollments">
+  <ng-container *ngFor="let task of enrollment.student_tasks">
+    <pre>
+        {{ task | json }}
+    </pre>
+  </ng-container>
+
+  
+</ng-container>

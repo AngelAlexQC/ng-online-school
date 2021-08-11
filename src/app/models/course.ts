@@ -8,7 +8,7 @@ export class Course {
   teacher!: User;
   period!: Period;
   course_classes: CourseClass[] = [];
-  enrollments!: { student: User }[];
+  enrollments!: { student: User; student_tasks: CourseClassTask[] }[];
 }
 
 export class Period {

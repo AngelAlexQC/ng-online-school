@@ -66,6 +66,7 @@
                           : 'badge-danger bg-danger'
                         : 'badge-warning bg-warning'
                     }}"
+                    (click)="saveStore(student_task)"
                   >
                     <i
                       class="fa fa-{{
@@ -86,9 +87,10 @@
                     [(ngModel)]="student_task.score"
                     pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
                     step="0.01"
-                    [value]="student_task.score.toFixed(2)"
+                    [value]="
+                      student_task.score > 0 ? student_task.score.toFixed(2) : 0
+                    "
                     style="max-width: 60px; margin-left: 0.5rem"
-                    (ngModelChange)="student_task.score = $event.toFixed(2)"
                     [disabled]="student_task.status"
                   />
                 </div>

@@ -1,7 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { identity } from "cypress/types/lodash";
 import { Course } from "src/app/models/course";
+import { CourseClassTask } from "src/app/models/course-class-task";
 import { Paginated } from "src/app/models/paginated";
 import { environment } from "src/environments/environment";
 
@@ -39,5 +41,22 @@ export class CoursesService {
     this.course = course;
     localStorage.setItem("course", JSON.stringify(course));
     this.router.navigate(["/course", course.id]);
+  }
+  saveStudentTask(task: CourseClassTask) {
+    task.task_id = task.id;
+    return this.http.put(
+      environment.apiURL +
+        "users/" +
+        task.student_id +
+        "/student-tasks/" +
+        task.task_id,
+      task,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
   }
 }

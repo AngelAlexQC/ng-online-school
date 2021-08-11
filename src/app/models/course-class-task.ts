@@ -7,4 +7,6 @@ export class CourseClassTask {
   status!: boolean;
   score!: number;
   date_start!: string;
+  student_id!: number;
+  task_id!: number;
 }

@@ -13,11 +13,7 @@
 <table class="table table-striped table-inverse table-responsive">
   <thead class="thead-inverse">
     <tr>
-      <th
-        rowspan="2"
-        class="text-center"
-        style="vertical-align: middle; text-align: center; font-size: 1.5rem"
-      >
+      <th rowspan="2" class="text-center" style="vertical-align: middle; text-align: center; font-size: 1.5rem">
         Estudiante
       </th>
       <th colspan="5" class="text-center">Notas</th>
@@ -32,67 +28,46 @@
     <ng-container *ngFor="let enrollment of enrollments; let i = index">
       <tr>
         <td scope="row">
-          <img
-            [src]="
+          <img [src]="
               (enrollment.student
                 ? enrollment.student.profile_photo_path
                 : 'https://i.pravatar.cc/300') +
               '?v=' +
               (enrollment.student ? enrollment.student.id : i + 1)
-            "
-            style="width: 30px"
-            alt="User"
-            class="img-fluid rounded-circle border border-white"
-          />
+            " style="width: 30px" alt="User" class="img-fluid rounded-circle border border-white" />
           {{ enrollment.student.name }}
         </td>
         <ng-container *ngFor="let student_task of enrollment.student_tasks">
           <ng-container *ngFor="let task of tasks">
-            <ng-container
-              *ngIf="
+            <ng-container *ngIf="
                 task.id == student_task.task_id &&
                 student_task.student_id == enrollment.student.id
-              "
-            >
+              ">
               <td class="text-end">
                 <div class="d-flex justify-content-end">
-                  <span
-                    class="btn btn-sm {{
-                      student_task.status ? 'disabled' : ''
+                  <span class="saveScoreBtn btn btn-sm {{
+                      student_task.status ? 'disabled' : 'enabled'
                     }} badge {{
                       student_task.status
                         ? student_task.score > 0
                           ? 'badge-info bg-info'
                           : 'badge-danger bg-danger'
                         : 'badge-warning bg-warning'
-                    }}"
-                    (click)="saveStore(student_task)"
-                  >
-                    <i
-                      class="fa fa-{{
-                        student_task.status
-                          ? student_task.score > 0
-                            ? 'check'
-                            : 'times'
-                          : 'question'
-                      }}"
-                      aria-hidden="true"
-                    ></i>
+                    }}" (click)="saveStore(student_task)">
+                    <i class="fa fa-{{
+                      student_task.status
+                        ? student_task.score > 0
+                          ? 'check'
+                          : 'times'
+                        : 'question'
+                    }}" aria-hidden="true"></i>
                   </span>
-                  <input
-                    type="number"
-                    name="score"
-                    id="score"
-                    placeholder="7.00"
-                    [(ngModel)]="student_task.score"
-                    pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-                    step="0.01"
+                  <input type="{{ student_task.score > 0 ? 'text' : 'number' }}" name="score" id="score"
+                    placeholder="7.00" [(ngModel)]="student_task.score" pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
                     [value]="
                       student_task.score > 0 ? student_task.score.toFixed(2) : 0
-                    "
-                    style="max-width: 60px; margin-left: 0.5rem"
-                    [disabled]="student_task.status"
-                  />
+                    " style="max-width: 60px; margin-left: 0.5rem" [disabled]="student_task.status"
+                    class="scoreInput" />
                 </div>
               </td>
             </ng-container>

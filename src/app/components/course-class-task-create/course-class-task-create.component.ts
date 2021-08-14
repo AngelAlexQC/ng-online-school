@@ -23,7 +23,7 @@ export class CourseClassTaskCreateComponent implements OnInit {
     this.course = this.courses.getCurrentCourse();
     this.task = new CourseClassTask();
     this.task.course_class_id =
-      this.course.course_classes[this.course.course_classes.length - 1].id;
+      this.course.course_classes[0].id;
   }
   saveTask() {
     this.courses.saveTask(this.task).subscribe(

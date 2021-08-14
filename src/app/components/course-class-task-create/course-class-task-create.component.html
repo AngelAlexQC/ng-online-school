@@ -18,9 +18,11 @@
                                 <div class="form-group">
                                     <label for="course_class_id">Clase</label>
                                     <select class="form-control" name="course_class_id" id="course_class_id"
-                                        [(ngModel)]="task.course_class_id" required>
-                                        <option *ngFor="let item of course_classes;let i = index" [value]="item.id"
-                                            selected="{{ (i == 1) }}">
+                                        [(ngModel)]="task.course_class_id" required [value]="null">
+                                        <option [value]="null" option aria-required="true" [selected]="true">
+                                            --Seleccione una clase--
+                                        </option>
+                                        <option *ngFor="let item of course_classes">
                                             {{ item.name }}
                                         </option>
                                     </select>

@@ -17,4 +17,5 @@ export class CourseClassTask {
   date_end!: Date;
   number!: number;
   course_class_id!: number;
+  visible = true;
 }

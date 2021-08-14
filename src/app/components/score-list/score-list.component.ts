@@ -16,12 +16,12 @@ export class ScoreListComponent implements OnInit {
 
   @Input()
   tasks: CourseClassTask[] = [];
+  visibleTasks: CourseClassTask[] = [];
   constructor(private courses: CoursesService, private router: Router) {}
 
   ngOnInit(): void {}
   changeStatus(task: CourseClassTask): void {
     task.status = !task.status;
-   
   }
   saveStore(task: CourseClassTask): void {
     task.status = true;
@@ -42,5 +42,12 @@ export class ScoreListComponent implements OnInit {
   async reload(url: string): Promise<boolean> {
     await this.router.navigateByUrl(".", { skipLocationChange: true });
     return this.router.navigateByUrl(url);
+  }
+  toogleVisible(task: CourseClassTask): void {
+    task.visible = !task.visible;
+    this.visibleTasks = this.tasks.filter(
+      (t: CourseClassTask) => t.visible == true
+    );
+    console.log(this.visibleTasks);
   }
 }

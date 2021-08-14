@@ -22,7 +22,7 @@
                                         <option [value]="null" option aria-required="true" [selected]="true">
                                             --Seleccione una clase--
                                         </option>
-                                        <option *ngFor="let item of course_classes">
+                                        <option *ngFor="let item of course_classes" [value]="item.id">
                                             {{ item.name }}
                                         </option>
                                     </select>

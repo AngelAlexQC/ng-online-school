@@ -45,7 +45,8 @@
     </div>
     <div class="tab-pane fade show" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
       <h2 class="mt-3">Tareas de Clase</h2>
-      <app-course-class-task-create [course_classes]="course.course_classes" [task]="currentTask">
+      <app-course-class-task-create (onCourseClassCreated)="updateCourse($event)"
+        [course_classes]="course.course_classes" [task]="currentTask">
       </app-course-class-task-create>
 
       <div class="py-3">

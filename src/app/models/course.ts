@@ -25,8 +25,10 @@ export class CourseClass {
   id!: number;
   course_id!: number;
   name!: string;
+  the_date_start: Date = new Date();
   date_start: Date = new Date();
   date_end: Date = new Date();
+  the_date_end: Date = new Date();
   parallel_name!: string;
   content!: string;
   description!: string;

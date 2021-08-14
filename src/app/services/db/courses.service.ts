@@ -85,7 +85,7 @@ export class CoursesService {
     return this.http.post(
       environment.apiURL +
         "courses/" +
-        courseClass.course_id +
+        courseClass.course.id +
         "/course-classes",
       courseClass,
       {

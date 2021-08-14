@@ -55,4 +55,7 @@ export class CourseComponent implements OnInit {
   setTask(i: number) {
     "Tarea de la clase " + (i + 1);
   }
+  updateCourse(evt: any) {
+    console.log(evt);
+  }
 }

@@ -1,14 +1,47 @@
 <button type="button" class="btn btn-primary" (click)="newCourseClass()">
-    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Tarea
+    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Clase
 </button>
 <ng-container *ngIf="courseClass">
     <div class="card border-primary mt-3">
         <div class="card-body">
             <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp"
-                    placeholder="Tema de Clase 1" [(ngModel)]="courseClass.name">
-                <small id="nameHelp" class="form-text text-muted">Tema de Clase</small>
+                <label for="description">Tema</label>
+                <input type="text" class="form-control" name="description" aria-describedby="descriptionHelp"
+                    placeholder="Tema de Clase X" [(ngModel)]="courseClass.description">
+                <small class="form-text text-muted">Tema de Clase</small>
+            </div>
+            <div class="form-group">
+                <label>Fecha y Hora de Entrada y Salida</label>
+                <div class="input-group">
+                    <span class="input-group-text" *ngIf="courseClass.date_start">
+                        {{ courseClass.date_start | date:'dd-MM-YYYY HH:mm'}}</span>
+                    <input type="date" class="form-control" name="date_start" id="date_start"
+                        aria-describedby="dateStartHelp" [(ngModel)]="courseClass.thedate_start"
+                        (ngModelChange)="changeStartDate(courseClass.thedate_start)">
+                    <input type="time" class="form-control" name="hour_start" id="hour_start"
+                        aria-describedby="hourStartHelp" [(ngModel)]="courseClass.hour_start"
+                        (ngModelChange)="changeStartHour(courseClass.hour_start)">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        {{ courseClass.date_end | date:'dd-MM-YYYY HH:mm'}}</span>
+                    <input type="date" class="form-control" name="date_end" id="date_end"
+                        aria-describedby="dateEndtHelp" [(ngModel)]="courseClass.thedate_end"
+                        (ngModelChange)="changeEndDate(courseClass.thedate_end)">
+                    <input type="time" class="form-control" name="hour_end" id="hour_end"
+                        aria-describedby="hourEndtHelp" [(ngModel)]="courseClass.hour_end"
+                        (ngModelChange)="changeEndHour(courseClass.hour_end)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content">Contenido de la clase</label>
+                <textarea class="form-control" name="content" id="content" rows="3" [(ngModel)]="courseClass.content">
+              </textarea>
+            </div>
+            <div class="form-group mt-3">
+                <button type="button" class="btn btn-primary" (click)="saveCourseClass()">
+                    <i class="fa fa-save" aria-hidden="true"></i>&nbsp;Guardar
+                </button>
             </div>
         </div>
     </div>

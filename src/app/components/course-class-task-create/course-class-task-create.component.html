@@ -48,7 +48,7 @@
                             <div class="col col-12 ">
                                 <div class="form-group">
                                     <label for="description">Descripción</label>
-                                    <input type="text" class="form-control" name="description"
+                                    <input type="text" class="form-control taskDescription" name="description"
                                         aria-describedby="taskNameHelp" placeholder="Tarea de la clase X"
                                         [(ngModel)]="task.description">
                                     <small id="taskNameHelp" class="form-text text-muted">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="col col-12 ">
-                                <div class="form-group">
+                                <div class="form-group taskContent">
                                     <label for="content">Contenido</label>
                                     <textarea class="form-control" name="content" id="content" rows="3"
                                         [(ngModel)]="task.content"></textarea>

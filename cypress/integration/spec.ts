@@ -11,12 +11,12 @@ describe("Probar Sistema", () => {
     cy.url().should("include", "/course/1");
   });
 
-  /* describe("Login & Go to Course && Create New Task", () => {
+  describe("Login & Go to Course && Create New Task", () => {
     it("Create a new task", () => {
       cy.contains("Tareas").click();
       cy.get("input[name='score']").first().type("7");
-      cy.get("input[name='description']").first().type("Test");
-      cy.get("[name='content']").first().type("Test Content");
+      cy.get(".taskDescription").first().type("Test");
+      cy.get(".taskContent").first().type("Test Content");
       // Click save button
       cy.contains("Guardar Tarea").click();
       cy.url().should("include", "/course/1");
@@ -40,7 +40,7 @@ describe("Probar Sistema", () => {
       cy.contains("Calificaciones").click();
       cy.url().should("include", "/course/1");
     });
-  }); */
+  });
   describe("Add CourseClass to Course", () => {
     it("Add Class to Course", () => {
       cy.contains("Agregar Clase").click();

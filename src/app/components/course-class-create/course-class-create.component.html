@@ -1,0 +1,15 @@
+<button type="button" class="btn btn-primary" (click)="newCourseClass()">
+    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Tarea
+</button>
+<ng-container *ngIf="courseClass">
+    <div class="card border-primary mt-3">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp"
+                    placeholder="Tema de Clase 1" [(ngModel)]="courseClass.name">
+                <small id="nameHelp" class="form-text text-muted">Tema de Clase</small>
+            </div>
+        </div>
+    </div>
+</ng-container>

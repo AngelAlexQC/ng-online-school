@@ -32,4 +32,5 @@ export class CourseClass {
   description!: string;
   course_class_tasks: CourseClassTask[] = [];
   course: Course = new Course();
+  number: any;
 }

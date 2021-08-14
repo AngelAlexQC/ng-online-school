@@ -3,31 +3,21 @@
     <div class="col col-12">
       <div class="accordion">
         <div class="accordion-item">
-          <h2
-            class="accordion-header"
-            [id]="'panelsStayOpen-heading' + courseClass.id"
-          >
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              [attr.data-bs-target]="
+          <h2 class="accordion-header" [id]="'panelsStayOpen-heading' + courseClass.id">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="
                 '#panelsStayOpen-collapse' + courseClass.id
-              "
-              [attr.aria-expanded]="'true'"
-              [attr.aria-controls]="'panelsStayOpen-collapse' + courseClass.id"
-            >
+              " [attr.aria-expanded]="'true'" [attr.aria-controls]="'panelsStayOpen-collapse' + courseClass.id">
               <i class="fa fa-calendar-week" aria-hidden="true"></i>&nbsp;
               {{ courseClass.date_start | date: "dd-MM-Y hh:mm" }}&nbsp;
               {{ courseClass.name }}
             </button>
           </h2>
-          <div
-            [id]="'panelsStayOpen-collapse' + courseClass.id"
-            class="accordion-collapse collapse"
-            [attr.aria-labelledby]="'panelsStayOpen-heading' + courseClass.id"
-          >
+          <div [id]="'panelsStayOpen-collapse' + courseClass.id" class="accordion-collapse collapse"
+            [attr.aria-labelledby]="'panelsStayOpen-heading' + courseClass.id">
             <div class="accordion-body">
+              <h3>
+                {{ courseClass.name }}
+              </h3>
               <p>
                 {{ courseClass.description }}
               </p>

@@ -8,9 +8,13 @@ export class CourseClassTask {
   file!: string;
   status!: boolean;
   score!: number;
-  date_start!: string;
+  date_start!: Date;
   student_id!: number;
   task_id!: number;
   course_class: CourseClass = new CourseClass();
   task: any;
+  course_id!: number;
+  date_end!: Date;
+  number!: number;
+  course_class_id!: number;
 }

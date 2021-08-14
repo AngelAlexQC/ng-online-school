@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { identity } from "cypress/types/lodash";
-import { Course } from "src/app/models/course";
+import { Course, CourseClass } from "src/app/models/course";
 import { CourseClassTask } from "src/app/models/course-class-task";
 import { Paginated } from "src/app/models/paginated";
 import { environment } from "src/environments/environment";
@@ -54,6 +54,40 @@ export class CoursesService {
         "/student-tasks/" +
         task.id,
       task,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
+
+  saveTask(task: CourseClassTask) {
+    Swal.showLoading();
+    return this.http.post(
+      environment.apiURL +
+        "course-classes/" +
+        task.course_class_id +
+        "/course-class-tasks",
+      task,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
+
+  saveCourseClass(courseClass: CourseClass) {
+    Swal.showLoading();
+    return this.http.post(
+      environment.apiURL +
+        "courses/" +
+        courseClass.course_id +
+        "/course-classes",
+      courseClass,
       {
         headers: {
           "Content-Type": "application/json",

@@ -19,8 +19,10 @@ import { ProfileComponent } from "./pages/shared/profile/profile.component";
 import { CourseClassComponent } from "./components/course-class/course-class.component";
 import { CoursesComponent } from "./pages/courses/courses.component";
 import { CourseClassTaskComponent } from "./components/course-class-task/course-class-task.component";
-import { StudentListComponent } from './components/student-list/student-list.component';
-import { ScoreListComponent } from './components/score-list/score-list.component';
+import { StudentListComponent } from "./components/student-list/student-list.component";
+import { ScoreListComponent } from "./components/score-list/score-list.component";
+import { CourseClassTaskCreateComponent } from './components/course-class-task-create/course-class-task-create.component';
+import { CourseClassCreateComponent } from './components/course-class-create/course-class-create.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { ScoreListComponent } from './components/score-list/score-list.component
     CourseClassTaskComponent,
     StudentListComponent,
     ScoreListComponent,
+    CourseClassTaskCreateComponent,
+    CourseClassCreateComponent,
   ],
   imports: [
     BrowserModule,

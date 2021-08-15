@@ -1,4 +1,5 @@
 # OnlineSchool
+[![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
 

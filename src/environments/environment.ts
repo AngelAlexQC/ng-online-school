@@ -4,6 +4,7 @@
 
 export const environment = {
   apiURL: "http://online.test/api/",
+  upload: "http://online.test/upload",
   production: false,
 };
 

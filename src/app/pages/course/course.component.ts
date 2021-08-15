@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Course } from "src/app/models/course";
+import { Course, CourseClass } from "src/app/models/course";
 import { CourseClassTask } from "src/app/models/course-class-task";
 import { AuthService } from "src/app/services/auth.service";
 import { CoursesService } from "src/app/services/db/courses.service";
@@ -16,12 +16,11 @@ export class CourseComponent implements OnInit {
   course!: Course;
 
   currentTask!: CourseClassTask;
-
+  courseClass!: CourseClass;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private courses: CoursesService,
-    private auth: AuthService
+    private courses: CoursesService
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +55,29 @@ export class CourseComponent implements OnInit {
     "Tarea de la clase " + (i + 1);
   }
   updateCourse(evt: any) {
-    console.log(evt);
+    this.courses.setCurrentCourse(evt);
+  }
+  editCourseClass(courseClass: CourseClass) {
+    this.courseClass = courseClass;
+    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
+    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
+    this.courseClass.hour_start = new Date().toString().slice(11, 15);
+  }
+  deleteCourseClass(courseClass: CourseClass) {
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "¡No podrás recuperar esta clase!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Si, borrar!",
+    }).then(() => {
+      this.courses
+        .deleteCourseClass(courseClass)
+        .subscribe((courseClass: any) => {        
+          this.router.navigate(["/course", this.id]);
+          window.location.reload();
+        });
+    });
   }
 }

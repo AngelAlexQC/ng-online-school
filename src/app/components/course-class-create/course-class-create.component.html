@@ -12,13 +12,13 @@
             </div>
             <div class="form-group">
                 <label>Fecha y Hora de Entrada y Salida</label>
-                <div class="input-group classDescription">
+                <div class="input-group classDescription" *ngIf="courseClass">
                     <span class="input-group-text" *ngIf="courseClass.date_start">
                         {{ courseClass.date_start | date:'dd-MM-YYYY HH:mm'}}</span>
-                    <input type="date" class="form-control" name="date_start" id="date_start"
+                    <input type="date" class="form-control" *ngIf="courseClass" name="date_start" id="date_start"
                         aria-describedby="dateStartHelp" [(ngModel)]="courseClass.thedate_start"
                         (ngModelChange)="changeStartDate(courseClass.thedate_start)">
-                    <input type="time" class="form-control" name="hour_start" id="hour_start"
+                    <input type="time" class="form-control" *ngIf="courseClass" name="hour_start" id="hour_start"
                         aria-describedby="hourStartHelp" [(ngModel)]="courseClass.hour_start"
                         (ngModelChange)="changeStartHour(courseClass.hour_start)">
                 </div>
@@ -35,8 +35,8 @@
             </div>
             <div class="form-group">
                 <label for="content">Contenido de la clase</label>
-                <textarea class="form-control" name="content" id="content" rows="3" [(ngModel)]="courseClass.content">
-              </textarea>
+                <textarea [froalaEditor] [(froalaModel)]="courseClass.content" [(ngModel)]="courseClass.content"
+                    [froalaEditor]="options"></textarea>
             </div>
             <div class="form-group mt-3">
                 <button type="button" class="btn btn-primary" (click)="saveCourseClass()">

@@ -96,4 +96,29 @@ export class CoursesService {
       }
     );
   }
+  updateCourseClass(courseClass: CourseClass) {
+    Swal.showLoading();
+    return this.http.put(
+      environment.apiURL + "course-classes/" + courseClass.id,
+      courseClass,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
+  deleteCourseClass(courseClass: CourseClass) {
+    Swal.showLoading();
+    return this.http.delete(
+      environment.apiURL + "course-classes/" + courseClass.id,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
 }

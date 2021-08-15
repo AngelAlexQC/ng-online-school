@@ -48,6 +48,5 @@ export class ScoreListComponent implements OnInit {
     this.visibleTasks = this.tasks.filter(
       (t: CourseClassTask) => t.visible == true
     );
-    console.log(this.visibleTasks);
   }
 }

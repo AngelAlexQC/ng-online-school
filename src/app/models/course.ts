@@ -35,4 +35,8 @@ export class CourseClass {
   course_class_tasks: CourseClassTask[] = [];
   course: Course = new Course();
   number: any;
+  thedate_start!: string;
+  hour_start!: string;
+  thedate_end: any;
+  hour_end!: string;
 }

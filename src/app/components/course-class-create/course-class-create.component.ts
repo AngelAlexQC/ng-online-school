@@ -1,8 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import { CourseClass } from "src/app/models/course";
 import { CoursesService } from "src/app/services/db/courses.service";
+import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
+import { take, finalize } from "rxjs/operators";
 
 @Component({
   selector: "app-course-class-create",
@@ -14,60 +16,93 @@ export class CourseClassCreateComponent implements OnInit {
   date_end!: string;
   hour_start!: string;
   hour_end!: string;
-  courseClass!: any;
+  @Input()
+  courseClass!: CourseClass;
   @Output() onCourseClassCreated = new EventEmitter();
-  constructor(private courses: CoursesService, private router: Router) {
-    this.courseClass = new CourseClass();
-    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
-  }
+  editingCourseClass: CourseClass = new CourseClass();
 
-  ngOnInit(): void {
-    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
-    this.courseClass.hour_start = new Date().toString().slice(11, 15);
-    this.courseClass.name = "Nombre";
-  }
+  isNew = false;
+  constructor(private courses: CoursesService, private router: Router) {}
+
+  ngOnInit(): void {}
   saveCourseClass() {
     Swal.showLoading();
-    this.courseClass.course_id = this.courseClass.course.id;
-    this.courses.saveCourseClass(this.courseClass).subscribe(
-      (courseClass: any) => {
-        this.courseClass = courseClass.data;
-        Swal.fire({
-          title: "Tarea exitosa!",
-          text: "La tarea se ha creado correctamente",
-          icon: "success",
-          timer: 2000,
-        });
-        Swal.showLoading();
-        // get CourseClasses of Course
-        this.courses
-          .getCourse(this.courses.getCurrentCourse().id)
-          .subscribe((course: any) => {
-            Swal.showLoading();
-
-            this.courseClass.course = course.data;
-            this.courses.setCurrentCourse(course.data);
-            this.onCourseClassCreated.emit(this.courseClass);
-            this.reload("/course/" + this.courseClass.course.id);
+    this.courseClass.course = this.courses.getCurrentCourse();
+    if (this.isNew) {
+      this.courses.saveCourseClass(this.courseClass).subscribe(
+        (courseClass: any) => {
+          this.courseClass = courseClass.data;
+          Swal.fire({
+            title: "Tarea exitosa!",
+            text: "La tarea se ha modificado correctamente",
+            icon: "success",
+            timer: 2000,
           });
-      },
-      (error) => {
-        switch (error.status) {
-          case 404:
-            this.router.navigate(["/404"]);
-            break;
-          case 401:
-            this.router.navigate(["/login"]);
-            break;
+          Swal.showLoading();
+          // get CourseClasses of Course
+          this.courses
+            .getCourse(this.courses.getCurrentCourse().id)
+            .subscribe((course: any) => {
+              Swal.showLoading();
+              window.location.reload();
+            });
+        },
+        (error) => {
+          switch (error.status) {
+            case 404:
+              this.router.navigate(["/404"]);
+              break;
+            case 401:
+              this.router.navigate(["/login"]);
+              break;
 
-          default:
-            break;
+            default:
+              break;
+          }
         }
-      }
-    );
+      );
+    } else {
+      this.courses.updateCourseClass(this.courseClass).subscribe(
+        (courseClass: any) => {
+          this.courseClass = courseClass.data;
+          Swal.fire({
+            title: "Tarea exitosa!",
+            text: "La tarea se ha modificado correctamente",
+            icon: "success",
+            timer: 2000,
+          });
+          Swal.showLoading();
+          // get CourseClasses of Course
+          this.courses
+            .getCourse(this.courses.getCurrentCourse().id)
+            .subscribe((course: any) => {
+              Swal.showLoading();
+              window.location.reload();
+            });
+        },
+        (error) => {
+          switch (error.status) {
+            case 404:
+              this.router.navigate(["/404"]);
+              break;
+            case 401:
+              this.router.navigate(["/login"]);
+              break;
+
+            default:
+              break;
+          }
+        }
+      );
+    }
   }
+  
   newCourseClass() {
+    this.isNew = true;
     this.courseClass = new CourseClass();
+    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
+    this.courseClass.thedate_start = new Date().toString().slice(0, 10);
+    this.courseClass.hour_start = new Date().toString().slice(11, 15);
   }
   // Change the hour of date_start field
   changeStartHour(hour: string) {
@@ -114,4 +149,15 @@ export class CourseClassCreateComponent implements OnInit {
     Swal.close();
     return this.router.navigateByUrl(url);
   }
+  public options = {
+    fileUpload: false,
+    imageUpload: true,
+    imageUploadMethod: "POST",
+    imageUploadURL: environment.upload,
+
+    imageUploadParams: {
+      id: "file",
+      name: "file",
+    },
+  };
 }

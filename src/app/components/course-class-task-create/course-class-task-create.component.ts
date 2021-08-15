@@ -22,8 +22,6 @@ export class CourseClassTaskCreateComponent implements OnInit {
   ngOnInit(): void {
     this.course = this.courses.getCurrentCourse();
     this.task = new CourseClassTask();
-    this.task.course_class_id =
-      this.course.course_classes[0].id;
   }
   saveTask() {
     this.courses.saveTask(this.task).subscribe(

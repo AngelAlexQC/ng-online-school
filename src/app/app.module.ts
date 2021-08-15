@@ -21,8 +21,10 @@ import { CoursesComponent } from "./pages/courses/courses.component";
 import { CourseClassTaskComponent } from "./components/course-class-task/course-class-task.component";
 import { StudentListComponent } from "./components/student-list/student-list.component";
 import { ScoreListComponent } from "./components/score-list/score-list.component";
-import { CourseClassTaskCreateComponent } from './components/course-class-task-create/course-class-task-create.component';
-import { CourseClassCreateComponent } from './components/course-class-create/course-class-create.component';
+import { CourseClassTaskCreateComponent } from "./components/course-class-task-create/course-class-task-create.component";
+import { CourseClassCreateComponent } from "./components/course-class-create/course-class-create.component";
+import "froala-editor/js/plugins.pkgd.min.js";
+import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CourseClassCreateComponent } from './components/course-class-create/cou
     CourseClassCreateComponent,
   ],
   imports: [
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

@@ -18,12 +18,25 @@
               <h3>
                 {{ courseClass.name }}
               </h3>
+
               <p>
                 {{ courseClass.description }}
               </p>
-              <p>
-                {{ courseClass.content }}
-              </p>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">
+                    <button type="button" class="btn btn-primary" (click)="emit()">
+                      Editar&nbsp;<i class="fa fa-edit"></i>
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-primary" (click)="emitDelete()">
+                      Eliminar&nbsp;<i class="fa fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+                <div [froalaView]="courseClass.content"></div>
+              </div>
             </div>
           </div>
         </div>

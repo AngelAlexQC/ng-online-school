@@ -52,11 +52,7 @@ export class LoginComponent implements OnInit {
             });
         },
         (error: any) => {
-          Swal.fire(
-            "Credenciales Incorrectas",
-            error.error.errors.email[0],
-            "error"
-          );
+          Swal.fire("Credenciales Incorrectas", JSON.stringify(error), "error");
         }
       );
   }

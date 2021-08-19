@@ -1,5 +1,5 @@
 export const environment = {
-  apiURL: "https://school.istup-ec.com/api/",
-  upload: "https://school.istup-ec.com/upload",
+  apiURL: "https://school.test/api/",
+  upload: "https://school.cicmanabi.com/upload",
   production: true,
 };

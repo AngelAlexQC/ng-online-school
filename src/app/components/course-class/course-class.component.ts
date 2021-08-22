@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Editor, toHTML } from "ngx-editor";
 import { CourseClass } from "src/app/models/course";
 
 @Component({
@@ -9,9 +10,10 @@ import { CourseClass } from "src/app/models/course";
 export class CourseClassComponent implements OnInit {
   @Input()
   courseClass!: CourseClass;
-
   @Output() courseClassChanged = new EventEmitter<CourseClass>();
   @Output() courseClassDeleted = new EventEmitter<CourseClass>();
+  editor: Editor = new Editor();
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,30 +1,44 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { CourseClass } from "src/app/models/course";
 import { CoursesService } from "src/app/services/db/courses.service";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
-import { take, finalize } from "rxjs/operators";
+import { Editor } from "ngx-editor";
 
 @Component({
   selector: "app-course-class-create",
   templateUrl: "./course-class-create.component.html",
   styleUrls: ["./course-class-create.component.scss"],
 })
-export class CourseClassCreateComponent implements OnInit {
+export class CourseClassCreateComponent implements OnInit, OnDestroy {
   date_start!: string;
   date_end!: string;
   hour_start!: string;
   hour_end!: string;
   @Input()
   courseClass!: CourseClass;
-  @Output() onCourseClassCreated = new EventEmitter();
+  @Output() onCourseClassTaskCreated = new EventEmitter();
   editingCourseClass: CourseClass = new CourseClass();
-
+  editor: Editor = new Editor();
+  html: "" = "";
   isNew = false;
   constructor(private courses: CoursesService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.editor = new Editor();
+  }
+  // make sure to destory the editor
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
   saveCourseClass() {
     Swal.showLoading();
     this.courseClass.course = this.courses.getCurrentCourse();
@@ -44,7 +58,7 @@ export class CourseClassCreateComponent implements OnInit {
             .getCourse(this.courses.getCurrentCourse().id)
             .subscribe((course: any) => {
               Swal.showLoading();
-              window.location.reload();
+              this.reload("course/" + this.courses.getCurrentCourse().id);
             });
         },
         (error) => {
@@ -77,7 +91,7 @@ export class CourseClassCreateComponent implements OnInit {
             .getCourse(this.courses.getCurrentCourse().id)
             .subscribe((course: any) => {
               Swal.showLoading();
-              window.location.reload();
+              this.reload("course/" + this.courses.getCurrentCourse().id);
             });
         },
         (error) => {
@@ -96,13 +110,14 @@ export class CourseClassCreateComponent implements OnInit {
       );
     }
   }
-  
+
   newCourseClass() {
     this.isNew = true;
     this.courseClass = new CourseClass();
     this.courseClass.thedate_start = new Date().toString().slice(0, 10);
     this.courseClass.thedate_start = new Date().toString().slice(0, 10);
     this.courseClass.hour_start = new Date().toString().slice(11, 15);
+    this.onCourseClassTaskCreated.emit(this.courseClass);
   }
   // Change the hour of date_start field
   changeStartHour(hour: string) {
@@ -149,15 +164,4 @@ export class CourseClassCreateComponent implements OnInit {
     Swal.close();
     return this.router.navigateByUrl(url);
   }
-  public options = {
-    fileUpload: false,
-    imageUpload: true,
-    imageUploadMethod: "POST",
-    imageUploadURL: environment.upload,
-
-    imageUploadParams: {
-      id: "file",
-      name: "file",
-    },
-  };
 }

@@ -80,6 +80,16 @@ export class CoursesService {
     );
   }
 
+  updateTask(task: CourseClassTask) {
+    Swal.showLoading();
+    return this.http.put(environment.apiURL + "tasks/" + task.id, task, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+  }
+
   saveCourseClass(courseClass: CourseClass) {
     Swal.showLoading();
     return this.http.post(
@@ -113,6 +123,35 @@ export class CoursesService {
     Swal.showLoading();
     return this.http.delete(
       environment.apiURL + "course-classes/" + courseClass.id,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
+
+  deleteTask(courseClassTask: CourseClassTask) {
+    Swal.showLoading();
+    return this.http.delete(
+      environment.apiURL + "tasks/" + courseClassTask.id,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+  }
+
+  enrollStudent(courseId: number, studentId: number) {
+    return this.http.post(
+      environment.apiURL + "enrollments/",
+      {
+        course_id: courseId,
+        student_id: studentId,
+      },
       {
         headers: {
           "Content-Type": "application/json",

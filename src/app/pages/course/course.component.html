@@ -8,46 +8,95 @@
   <h6>Docente: {{ course.teacher.name }}</h6>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="course-classes-tab" data-bs-toggle="tab" data-bs-target="#course-classes"
-        type="button" role="tab" aria-controls="course-classes" aria-selected="true">
+      <button
+        class="nav-link active"
+        id="course-classes-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#course-classes"
+        type="button"
+        role="tab"
+        aria-controls="course-classes"
+        aria-selected="true"
+      >
         <i class="fa fa-clock"></i>&nbsp;Clases
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="tasks-tab" data-bs-toggle="tab" data-bs-target="#tasks" type="button" role="tab"
-        aria-controls="tasks" aria-selected="true">
+      <button
+        class="nav-link"
+        id="tasks-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#tasks"
+        type="button"
+        role="tab"
+        aria-controls="tasks"
+        aria-selected="true"
+      >
         <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Tareas
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="enrollments-tab" data-bs-toggle="tab" data-bs-target="#enrollments" type="button"
-        role="tab" aria-controls="enrollments" aria-selected="false">
+      <button
+        class="nav-link"
+        id="enrollments-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#enrollments"
+        type="button"
+        role="tab"
+        aria-controls="enrollments"
+        aria-selected="false"
+      >
         <i class="fa fa-users-class"></i>&nbsp;Estudiantes
       </button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="scores-tab" data-bs-toggle="tab" data-bs-target="#scores" type="button" role="tab"
-        aria-controls="scores" aria-selected="false">
+      <button
+        class="nav-link"
+        id="scores-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#scores"
+        type="button"
+        role="tab"
+        aria-controls="scores"
+        aria-selected="false"
+      >
         <i class="fa fa-star" aria-hidden="true"></i>&nbsp;Calificaciones
       </button>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="course-classes" role="tabpanel" aria-labelledby="course-classes-tab">
+    <div
+      class="tab-pane fade show active"
+      id="course-classes"
+      role="tabpanel"
+      aria-labelledby="course-classes-tab"
+    >
       <h2 class="mt-3">Clases del Curso</h2>
       <app-course-class-create [courseClass]="courseClass">
       </app-course-class-create>
       <div class="py-3">
-        <app-course-class *ngFor="let courseClass of course.course_classes" [courseClass]="courseClass"
-          (courseClassChanged)="editCourseClass($event)" (courseClassDeleted)="deleteCourseClass($event)">
+        <app-course-class
+          *ngFor="let courseClass of course.course_classes"
+          [courseClass]="courseClass"
+          (courseClassChanged)="editCourseClass($event)"
+          (courseClassDeleted)="deleteCourseClass($event)"
+        >
         </app-course-class>
         <small> Las clases están ordenadas por número. </small>
       </div>
     </div>
-    <div class="tab-pane fade show" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
+    <div
+      class="tab-pane fade show"
+      id="tasks"
+      role="tabpanel"
+      aria-labelledby="tasks-tab"
+    >
       <h2 class="mt-3">Tareas de Clase</h2>
-      <app-course-class-task-create (onCourseClassCreated)="updateCourse($event)"
-        [course_classes]="course.course_classes" [task]="currentTask">
+      <app-course-class-task-create
+        (onCourseClassTaskCreated)="onCourseClassTaskCreated($event)"
+        [course_classes]="course.course_classes"
+        [task]="currentTask"
+      >
       </app-course-class-task-create>
 
       <div class="py-3">
@@ -57,19 +106,38 @@
           </h3>
 
           <ng-container *ngFor="let task of courseClass.course_class_tasks">
-            <app-course-class-task [task]="task"> </app-course-class-task>
+            <app-course-class-task
+              [task]="task"
+              (taskChanged)="taskChanged($event)"
+              (taskDeleted)="taskDeleted($event)"
+            >
+            </app-course-class-task>
           </ng-container>
         </ng-container>
         <small> Las tareas están ordenadas por número. </small>
       </div>
     </div>
-    <div class="tab-pane fade" id="enrollments" role="tabpanel" aria-labelledby="enrollments-tab">
+    <div
+      class="tab-pane fade"
+      id="enrollments"
+      role="tabpanel"
+      aria-labelledby="enrollments-tab"
+    >
       <h2 class="mt-3">Estudiantes del Curso</h2>
+      <app-student-create (courseId)="(course.id)"></app-student-create>
       <app-student-list [enrollments]="course.enrollments"></app-student-list>
     </div>
-    <div class="tab-pane fade" id="scores" role="tabpanel" aria-labelledby="scores-tab">
+    <div
+      class="tab-pane fade"
+      id="scores"
+      role="tabpanel"
+      aria-labelledby="scores-tab"
+    >
       <h2 class="mt-3">Calificaciones del Curso</h2>
-      <app-score-list [enrollments]="course.enrollments" [tasks]="course.tasks"></app-score-list>
+      <app-score-list
+        [enrollments]="course.enrollments"
+        [tasks]="course.tasks"
+      ></app-score-list>
     </div>
   </div>
 </div>

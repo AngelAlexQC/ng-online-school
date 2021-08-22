@@ -1,0 +1,31 @@
+<div class="container-fluid mb-3">
+  <input
+    type="hidden"
+    class="form-control"
+    name="course_id"
+    id="course_id"
+    [(ngModel)]="courseId"
+  />
+  <div class="form-group">
+    <input
+      type="hidden"
+      class="form-control"
+      name="name"
+      id="name"
+      [value]="student.first_name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="student_id"> Estudiante </label>
+    <select
+      class="form-control"
+      name="student_id"
+      id="student_id"
+      [(ngModel)]="student.id"
+    >
+      <ng-container *ngFor="let stud of students; let i = index">
+        <option *ngIf="stud">{{ stud.id }} - {{ stud.name }}</option>
+      </ng-container>
+    </select>
+  </div>
+</div>

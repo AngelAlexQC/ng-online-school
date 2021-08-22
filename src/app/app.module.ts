@@ -23,7 +23,8 @@ import { StudentListComponent } from "./components/student-list/student-list.com
 import { ScoreListComponent } from "./components/score-list/score-list.component";
 import { CourseClassTaskCreateComponent } from "./components/course-class-task-create/course-class-task-create.component";
 import { CourseClassCreateComponent } from "./components/course-class-create/course-class-create.component";
-import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+import { NgxEditorModule } from "ngx-editor";
+import { StudentCreateComponent } from './components/student-create/student-create.component';
 
 @NgModule({
   declarations: [
@@ -46,10 +47,10 @@ import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
     ScoreListComponent,
     CourseClassTaskCreateComponent,
     CourseClassCreateComponent,
+    StudentCreateComponent,
   ],
   imports: [
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
+    NgxEditorModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

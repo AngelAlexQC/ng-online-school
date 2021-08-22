@@ -10,6 +10,7 @@ export class CourseClassTask {
   score!: number;
   date_start!: Date;
   student_id!: number;
+  endline!: Date;
   task_id!: number;
   course_class: CourseClass = new CourseClass();
   task: any;

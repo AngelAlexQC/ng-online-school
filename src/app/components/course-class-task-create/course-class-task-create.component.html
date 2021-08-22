@@ -1,77 +1,150 @@
 <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-            <button class="btn btn-primary accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#newTaskCollapse" aria-expanded="true" aria-controls="newTaskCollapse"
-                (click)="newTask()">
-                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Tarea
-            </button>
-
-        </h2>
-        <div id="newTaskCollapse" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample">
-            <ng-container *ngIf="task">
-                <div class="accordion-body newTaskCard">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col col-12 col-lg-9">
-                                <div class="form-group">
-                                    <label for="course_class_id">Clase</label>
-                                    <select class="form-control" name="course_class_id" id="course_class_id"
-                                        [(ngModel)]="task.course_class_id" required [value]="null">
-                                        <option [value]="null" option aria-required="true" [selected]="true">
-                                            --Seleccione una clase--
-                                        </option>
-                                        <option *ngFor="let item of course_classes" [value]="item.id">
-                                            {{ item.name }}
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                        aria-describedby="taskNameHelp" placeholder="Tarea de la clase X"
-                                        [(ngModel)]="task.name">
-                                    <small id="taskNameHelp" class="form-text text-muted">Escriba un nombre para
-                                        esta tarea</small>
-                                </div>
-                            </div>
-                            <div class="col col-12 col-lg-3">
-                                <div class="form-group">
-                                    <label for="score">Valoración</label>
-                                    <input type="number" class="form-control score" name="score" id="score"
-                                        aria-describedby="helpId" placeholder="10.00" [(ngModel)]="task.score">
-                                    <small id="helpId" class="form-text text-muted">Puntaje máximo de la
-                                        tarea</small>
-                                </div>
-                            </div>
-                            <div class="col col-12 ">
-                                <div class="form-group">
-                                    <label for="description">Descripción</label>
-                                    <input type="text" class="form-control taskDescription" name="description"
-                                        aria-describedby="taskNameHelp" placeholder="Tarea de la clase X"
-                                        [(ngModel)]="task.description">
-                                    <small id="taskNameHelp" class="form-text text-muted">
-                                        Escriba una breve descripción para esta tarea
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="col col-12 ">
-                                <div class="form-group taskContent">
-                                    <label for="content">Contenido</label>
-                                    <textarea class="form-control" name="content" id="content" rows="3"
-                                        [(ngModel)]="task.content"></textarea>
-                                </div>
-                            </div>
-                            <div class="col col-12 col-md-8 col-lg-6 col-xl-4 mt-3">
-                                <button type="button" class="btn btn-success" (click)="saveTask()">
-                                    <i class="fa fa-save" aria-hidden="true"></i>&nbsp;Guardar Tarea
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="btn btn-primary accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#newTaskCollapse"
+        aria-expanded="true"
+        aria-controls="newTaskCollapse"
+        (click)="newTask()"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Agregar Tarea
+      </button>
+    </h2>
+    <div
+      id="newTaskCollapse"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <ng-container *ngIf="task">
+        <div class="accordion-body newTaskCard">
+          <div class="card-body">
+            <div class="row">
+              <div class="col col-12 col-lg-9">
+                <div class="form-group">
+                  <label for="course_class_id">Clase</label>
+                  <select
+                    class="form-control"
+                    name="course_class_id"
+                    id="course_class_id"
+                    [(ngModel)]="task.course_class_id"
+                    required
+                    [value]="null"
+                  >
+                    <option
+                      [value]="null"
+                      option
+                      aria-required="true"
+                      [selected]="true"
+                    >
+                      --Seleccione una clase--
+                    </option>
+                    <option
+                      *ngFor="let item of course_classes"
+                      [value]="item.id"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
                 </div>
-            </ng-container>
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    aria-describedby="taskNameHelp"
+                    placeholder="Tarea de la clase X"
+                    [(ngModel)]="task.name"
+                  />
+                  <small id="taskNameHelp" class="form-text text-muted"
+                    >Escriba un nombre para esta tarea</small
+                  >
+                </div>
+              </div>
+              <div class="col col-12 col-lg-3">
+                <div class="form-group">
+                  <label for="score">Valoración</label>
+                  <input
+                    type="number"
+                    class="form-control score"
+                    name="score"
+                    id="score"
+                    aria-describedby="helpId"
+                    placeholder="10.00"
+                    [(ngModel)]="task.score"
+                  />
+                  <small id="helpId" class="form-text text-muted"
+                    >Puntaje máximo de la tarea</small
+                  >
+                </div>
+              </div>
+              <div class="col col-md-6">
+                <div class="form-group">
+                  <label for="endline">Fecha de entrega</label>
+                  <input
+                    type="datetime-local"
+                    class="form-control"
+                    name="endline"
+                    id="endline"
+                    aria-describedby="endlineHelp"
+                    placeholder="Fecha de entrega"
+                    [(ngModel)]="task.endline"
+                  />
+                  <small id="endlineHelp" class="form-text text-muted"
+                    >Fecha de entrega de la tarea</small
+                  >
+                </div>
+              </div>
+              <div class="col col-md-6"></div>
+              <div class="col col-12">
+                <div class="form-group">
+                  <label for="description">Descripción</label>
+                  <input
+                    type="text"
+                    class="form-control taskDescription"
+                    name="description"
+                    aria-describedby="taskNameHelp"
+                    placeholder="Tarea de la clase X"
+                    [(ngModel)]="task.description"
+                  />
+                  <small id="taskNameHelp" class="form-text text-muted">
+                    Escriba una breve descripción para esta tarea
+                  </small>
+                </div>
+              </div>
+              <div class="col col-12">
+                <div class="form-group taskContent">
+                  <label for="content">Contenido</label>
+                  <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                  <ngx-editor
+                    [editor]="editor"
+                    [(ngModel)]="task.content"
+                    [disabled]="false"
+                    [placeholder]="'Escribe Aquí...'"
+                  ></ngx-editor>
+                </div>
+              </div>
+              <div class="col col-12 col-md-8 col-lg-6 col-xl-4 mt-3">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="saveTask()"
+                >
+                  <i class="fa fa-save" aria-hidden="true"></i>&nbsp;{{
+                    !(task.id > 0) ? "Crear" : "Guardar"
+                  }}
+                  Tarea
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+      </ng-container>
     </div>
+  </div>
 </div>

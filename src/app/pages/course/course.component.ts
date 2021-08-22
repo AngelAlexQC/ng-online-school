@@ -51,8 +51,13 @@ export class CourseComponent implements OnInit {
     });
   }
 
-  setTask(i: number) {
-    "Tarea de la clase " + (i + 1);
+  taskChanged(event: CourseClassTask) {
+    this.currentTask = event;
+    console.log(this.currentTask);
+  }
+  onCourseClassTaskCreated(courseClassTask: any) {
+    this.courseClass = courseClassTask;
+    this.courseClass.id = 0;
   }
   updateCourse(evt: any) {
     this.courses.setCurrentCourse(evt);
@@ -74,7 +79,26 @@ export class CourseComponent implements OnInit {
     }).then(() => {
       this.courses
         .deleteCourseClass(courseClass)
-        .subscribe((courseClass: any) => {        
+        .subscribe((courseClass: any) => {
+          this.router.navigate(["/course", this.id]);
+          window.location.reload();
+        });
+    });
+  }
+  taskDeleted(courseClassTask: CourseClassTask) {
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "¡No podrás recuperar esta tarea!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Si, borrar!",
+
+      cancelButtonText: "Cancelar",
+    }).then(() => {
+      this.courses
+        .deleteTask(courseClassTask)
+        .subscribe((courseClassTask: any) => {
           this.router.navigate(["/course", this.id]);
           window.location.reload();
         });

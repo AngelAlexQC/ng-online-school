@@ -26,12 +26,47 @@
             [attr.aria-labelledby]="'panelsStayOpen-heading' + task.id"
           >
             <div class="accordion-body">
+              <h3>
+                {{ task.name }}
+              </h3>
+
               <p>
                 {{ task.description }}
               </p>
-              <p>
-                {{ task.content }}
-              </p>
+              <div class="container-fluid">
+                <div class="row mb-3">
+                  <div class="col">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="emit()"
+                    >
+                      Editar&nbsp;<i class="fa fa-edit"></i>
+                    </button>
+                  </div>
+                  <div class="col">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="emitDelete()"
+                    >
+                      Eliminar&nbsp;<i class="fa fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
+                <label>
+                  <strong>
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    &nbsp;Detalle de la tarea:
+                  </strong>
+                </label>
+                <ngx-editor
+                  [editor]="editor"
+                  [(ngModel)]="task.content"
+                  [disabled]="true"
+                  [placeholder]="'No hay detalle para esta tarea...'"
+                ></ngx-editor>
+              </div>
             </div>
           </div>
         </div>

@@ -124,7 +124,10 @@
       aria-labelledby="enrollments-tab"
     >
       <h2 class="mt-3">Estudiantes del Curso</h2>
-      <app-student-create (courseId)="(course.id)"></app-student-create>
+      <app-student-create
+        [courseId]="id"
+        [enrollments]="course.enrollments"
+      ></app-student-create>
       <app-student-list [enrollments]="course.enrollments"></app-student-list>
     </div>
     <div

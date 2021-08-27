@@ -147,7 +147,7 @@ export class CoursesService {
 
   enrollStudent(courseId: number, studentId: number) {
     return this.http.post(
-      environment.apiURL + "enrollments/",
+      environment.apiURL + "enrollments",
       {
         course_id: courseId,
         student_id: studentId,
